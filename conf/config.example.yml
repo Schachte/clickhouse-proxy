@@ -1,0 +1,19 @@
+tunnels:
+  - name: postgres-tunnel
+    command: cloudflared
+    args:
+      - access
+      - tcp
+      - --hostname
+      - <your-database-host>
+      - --url
+      - 127.0.0.1:5432
+
+proxy:
+  listenPort: 9090
+  targetHost: <your-proxy-host>
+  targetPort: 443
+  targetScheme: https
+  cloudflaredAppUrl: https://<your-proxy-host>
+  tokenCacheDurationMs: 300000  # 5 minutes
+  cookieName: CF_Authorization
