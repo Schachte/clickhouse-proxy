@@ -1,14 +1,14 @@
-
 {
-  "name": "cloudflare-tunnel-manager",
+  "name": "clickhouse-access-proxy",
   "version": "1.0.0",
-  "description": "Manages Cloudflare tunnels",
+  "description": "HTTP proxy for ClickHouse behind Cloudflare Access",
   "main": "dist/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
     "dev": "nodemon --exec ts-node src/index.ts",
     "build": "tsc && pkg . --output build/clickhouse-proxy",
     "setup": "bash ./setup.sh",
+    "format": "prettier --write \"**/*.{ts,js,json,yml,yaml,md}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
@@ -28,6 +28,7 @@
     "@types/node": "^20.11.17",
     "nodemon": "^3.0.3",
     "pkg": "^5.8.1",
+    "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }

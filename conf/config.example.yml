@@ -1,19 +1,21 @@
-tunnels:
-  - name: postgres-tunnel
-    command: cloudflared
-    args:
-      - access
-      - tcp
-      - --hostname
-      - <your-database-host>
-      - --url
-      - 127.0.0.1:5432
+# ClickHouse Proxy Configuration
+# This proxy forwards requests to a remote ClickHouse instance behind Cloudflare Access
+# It handles both Cloudflare Access authentication and ClickHouse user authentication
 
 proxy:
-  listenPort: 9090
-  targetHost: <your-proxy-host>
-  targetPort: 443
-  targetScheme: https
-  cloudflaredAppUrl: https://<your-proxy-host>
-  tokenCacheDurationMs: 300000  # 5 minutes
-  cookieName: CF_Authorization
+  # Local proxy server settings
+  listenPort: 9090 # Port for the local proxy server
+
+  # Remote ClickHouse server settings
+  targetHost: your-clickhouse-host.example.com # Remote ClickHouse hostname
+  targetPort: 443 # Remote ClickHouse port (typically 443 for HTTPS)
+  targetScheme: https # Protocol (http or https)
+
+  # Cloudflare Access settings
+  cloudflaredAppUrl: https://your-clickhouse-host.example.com # Cloudflare Access application URL
+  tokenCacheDurationMs: 300000 # Token cache duration (5 minutes = 300000ms)
+  cookieName: CF_Authorization # Cookie name for CF Access token
+
+  # ClickHouse authentication
+  clickhouseUsername: your-username # Your ClickHouse username
+  clickhousePassword: your-password # Your ClickHouse password
